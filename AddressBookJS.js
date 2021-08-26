@@ -73,6 +73,8 @@ class Contact {
     }
   }  
   let addressBookArr = new Array();
+let contactsCityMap = new Map();
+ let contactsStateMap = new Map();
 function contactExists(fName, lName){
   return addressBookArr.some(u => u.firstName == fName && u.lastName == lName);
 }
@@ -133,8 +135,18 @@ function searchContactByCity(city) {
 function searchContactByState(state) {
     return addressBookArr.filter((contact) => contact.state == state);
   }
+function viewContactsByCity(){
+    addressBookArr.filter((contact) => contactsCityMap.set(contact.city, searchContactByCity(contact.city)));
+    return contactsCityMap;
+}
+
+function viewContactsByState(){
+    addressBookArr.filter((contact) => contactsCityMap.set(contact.state, searchContactByCity(contact.state)));
+    return contactsStateMap;
+}
+
 let contact1 = new Contact("Pooja", "Reddy", "Shanthinagar", "Shimoga", "Karnataka", "577201", "91 8880422433", "Pooja123@gmail.com");
-let contact2 = new Contact("Shobha", "Reddy", "Ragigudda", "Shimoga", "Karnataka", "577202", "91 9807654321", "Shobha123@gmail.com");
+ let contact2 = new Contact("Shobha", "Reddy", "Ragigudda", "Shimoga", "Karnataka", "577202", "91 9807654321", "Shobha123@gmail.com");
  try{
     addressBookArr.push(contact1);
  }catch(e){
@@ -147,10 +159,10 @@ try{
 }
 console.log(addressBookArr);
 
-editContact("Shobha", "Reddy", "address", "Bihar");
-console.log(addressBookArr);
+//editContact("Mahesh", "Reddy", "address", "Bihar");
+//console.log(addressBookArr);
 
-deleteContact("Shobha", "Reddy");
+//deleteContact("Mahesh", "Reddy");
 console.log(addressBookArr);
 
 console.log("No of contacts : "+ addressBookArr.reduce(countContact, 0));
@@ -161,4 +173,5 @@ try{
         console.error(e);
 }
 console.log(searchContactByCity("Shimoga"));
+console.log(viewContactsByCity());
   
