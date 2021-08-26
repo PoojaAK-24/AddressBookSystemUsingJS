@@ -73,83 +73,92 @@ class Contact {
     }
   }  
   let addressBookArr = new Array();
-  function contactExists(fName, lName){
-    return addressBookArr.some(u => u.firstName == fName && u.lastName == lName);
-  }
-  function addContact(newContact){
-      if(contactExists(newContact.firstName, newContact.lastName)){
-          throw "Already Present";
-      }else{
-          addressBookArr.push(newContact);
-      }
-   }
-  
-  function editContact(fName, lName, property, value){
-    if(contactExists(fName, lName)){
-    switch(property){
-        case "address":
-            addressBookArr.find((contact) => contact.firstName == fName).address = value;
-            break;
-        case "city":
-            addressBookArr.find((contact) => contact.firstName == fName).city = value;
-            break;
-        case "state":
-            addressBookArr.find((contact) => contact.firstName == fName).state = value;
-            break;
-        case "zip":
-            addressBookArr.find((contact) => contact.firstName == fName).zip = value;
-            break;
-        case "phone":
-            addressBookArr.find((contact) => contact.firstName == fName).phoneNo = value;
-            break;
-        case "email":
-            addressBookArr.find((contact) => contact.firstName == fName).email = value;
-            break;
-        default:
-            console.log("Enter valid property");
+function contactExists(fName, lName){
+  return addressBookArr.some(u => u.firstName == fName && u.lastName == lName);
+}
+function addContact(newContact){
+    if(contactExists(newContact.firstName, newContact.lastName)){
+        throw "Already Present";
+    }else{
+        addressBookArr.push(newContact);
     }
-  }else{
-      console.log("Contact Does Not Exist");
+ }
+
+function editContact(fName, lName, property, value){
+  if(contactExists(fName, lName)){
+  switch(property){
+      case "address":
+          addressBookArr.find((contact) => contact.firstName == fName).address = value;
+          break;
+      case "city":
+          addressBookArr.find((contact) => contact.firstName == fName).city = value;
+          break;
+      case "state":
+          addressBookArr.find((contact) => contact.firstName == fName).state = value;
+          break;
+      case "zip":
+          addressBookArr.find((contact) => contact.firstName == fName).zip = value;
+          break;
+      case "phone":
+          addressBookArr.find((contact) => contact.firstName == fName).phoneNo = value;
+          break;
+      case "email":
+          addressBookArr.find((contact) => contact.firstName == fName).email = value;
+          break;
+      default:
+          console.log("Enter valid property");
   }
+}else{
+    console.log("Contact Does Not Exist");
+}
+}
+
+function deleteContact(fName,lName){
+    let deleteContact = contactExists(fName,lName);
+    if(contactExists(fName,lName)){
+        addressBookArr.pop(contactExists(fName,lName));
+     console.log("Contact "+fName+" "+lName+" removed successfully!!");
+ }  else{
+     console.log("Contact "+fName+" "+lName+" does not exist!");
+ }
+}
+function countContact(count) {
+    count += 1;
+    return count;
+}
+function searchContactByCity(city) {
+    return addressBookArr.filter((contact) => contact.city == city);
   }
+
+function searchContactByState(state) {
+    return addressBookArr.filter((contact) => contact.state == state);
+  }
+let contact1 = new Contact("Pooja", "Reddy", "Shanthinagar", "Shimoga", "Karnataka", "577201", "91 8880422433", "Pooja123@gmail.com");
+let contact2 = new Contact("Shobha", "Reddy", "Ragigudda", "Shimoga", "Karnataka", "577202", "91 9807654321", "Shobha123@gmail.com");
+ try{
+    addressBookArr.push(contact1);
+ }catch(e){
+     console.error(e);
+ }
+try{
+    addressBookArr.push(contact2);
+}catch(e){
+    console.error(e);
+}
+console.log(addressBookArr);
+
+editContact("Shobha", "Reddy", "address", "Bihar");
+console.log(addressBookArr);
+
+deleteContact("Shobha", "Reddy");
+console.log(addressBookArr);
+
+console.log("No of contacts : "+ addressBookArr.reduce(countContact, 0));
+
+try{
+    addContact(contact1);
+    }catch(e){
+        console.error(e);
+}
+console.log(searchContactByCity("Shimoga"));
   
-  function deleteContact(fName,lName){
-      let deleteContact = contactExists(fName,lName);
-      if(contactExists(fName,lName)){
-          addressBookArr.pop(contactExists(fName,lName));
-       console.log("Contact "+fName+" "+lName+" removed successfully!!");
-   }  else{
-       console.log("Contact "+fName+" "+lName+" does not exist!");
-   }
-  }
-  function countContact(count) {
-      count += 1;
-      return count;
-  }
-  let contact1 = new Contact("Pooja", "Reddy", "Shanthinagar", "Shimoga", "Karnataka", "577201", "91 8880422433", "Pooja123@gmail.com");
-   let contact2 = new Contact("Shobha", "Reddy", "Ragigudda", "Shimoga", "Karnataka", "577202", "91 9807654321", "Shobha123@gmail.com");
-   try{
-      addressBookArr.push(contact1);
-   }catch(e){
-       console.error(e);
-   }
-  try{
-      addressBookArr.push(contact2);
-  }catch(e){
-      console.error(e);
-  }
-  console.log(addressBookArr);
-  
-  editContact("Shobha", "Reddy", "address", "Bihar");
-  console.log(addressBookArr);
-  
-  deleteContact("Shobha", "Reddy");
-  console.log(addressBookArr);
-  
-  console.log("No of contacts : "+ addressBookArr.reduce(countContact, 0));
-  
-  try{
-      addContact(contact1);
-      }catch(e){
-          console.error(e);
-  }
