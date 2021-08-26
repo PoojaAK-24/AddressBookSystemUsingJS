@@ -157,7 +157,7 @@ function countByState(){
 }
 
 let contact1 = new Contact("Pooja", "Reddy", "Shanthinagar", "Shimoga", "Karnataka", "577201", "91 8880422433", "Pooja123@gmail.com");
- let contact2 = new Contact("Shobha", "Reddy", "Ragigudda", "Shimoga", "Karnataka", "577202", "91 9807654321", "Shobha123@gmail.com");
+let contact2 = new Contact("Shobha", "Reddy", "Ragigudda", "Shimoga", "Karnataka", "577202", "91 9807654321", "Shobha123@gmail.com");
  try{
     addressBookArr.push(contact1);
  }catch(e){
@@ -184,5 +184,8 @@ try{
         console.error(e);
 }
 console.log(searchContactByCity("Shimoga"));
+
 console.log(viewContactsByCity());
-console.log(countByCity());
+//UC11
+addressBookArr.sort((person1, person2) => (person1.firstName).localeCompare(person2.firstName));
+ console.log(addressBookArr); 
