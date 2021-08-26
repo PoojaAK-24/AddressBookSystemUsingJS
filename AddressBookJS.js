@@ -72,9 +72,15 @@ class Contact {
         ", city : "+ this.city + ", State : "+ this.state +", Zip : "+ this.zip+ ", Phone No : "+ this.phoneNo + ", Email : "+ this.email;
     }
   }  
-  try{
-  let contact = new Contact("Pooja", "Reddy", "Shanthinagar", "Shimoga", "Karnataka", "577201", "91 8880422433", "Pooja123@gmail.com");
-  console.log(contact.toString());
-  }catch(e){
+  let addressBookArr = new Array();
+ try{
+ addressBookArr.push(new Contact("Pooja", "Reddy", "Shanthinagar", "Shimoga", "Karnataka", "577201", "91 8880422433", "Pooja123@gmail.com"));
+ }catch(e){
+     console.error(e);
+ }
+try{
+    addressBookArr.push(new Contact("Shobha", "Reddy", "Ragigudda", "Shimoga", "Karnataka", "577201", "91 9807654321", "Pooja123@gmail.com"));
+}catch(e){
     console.error(e);
-  }
+}
+console.log(addressBookArr);
