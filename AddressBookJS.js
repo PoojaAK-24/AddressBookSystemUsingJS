@@ -105,6 +105,16 @@ function editContact(fName, lName, property, value){
     console.log("Contact Does Not Exist");
 }
 }
+
+function deleteContact(fName,lName){
+    let deleteContact = contactExists(fName,lName);
+    if(contactExists(fName,lName)){
+        addressBookArr.pop(contactExists(fName,lName));
+     console.log("Contact "+fName+" "+lName+" removed successfully!!");
+ }  else{
+     console.log("Contact "+fName+" "+lName+" does not exist!");
+ }
+}
 try{
 addressBookArr.push(new Contact("Pooja", "Reddy", "Shanthinagar", "Shimoga", "Karnataka", "577201", "91 8880422433", "Pooja123@gmail.com"));
 }catch(e){
@@ -118,4 +128,7 @@ try{
 console.log(addressBookArr);
 
 editContact("Shobha", "Reddy", "address", "Bihar");
+console.log(addressBookArr);
+
+deleteContact("Shobha", "Reddy");
 console.log(addressBookArr);
